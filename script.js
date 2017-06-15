@@ -36,7 +36,7 @@ vm.controlPercent = function (values) {
     }, this);
 
     //total == 100% (1)
-    if (total == 100) {
+    if (total == 1) {
         return null;
     //total != 100% (1)
     } else {
@@ -46,7 +46,7 @@ vm.controlPercent = function (values) {
         values.forEach(function (value, index) {
             //rozdíl '0.005' je největší a nejideálnější, který může být a dále hledat netřeba
             if (Math.abs(roundValues[index] - value) == 0.005) {
-                (total > 100) ? (roundValues[index] -= 0.01) : (roundValues[index] += 0.01);
+                (total > 1) ? (roundValues[index] -= 0.01) : (roundValues[index] += 0.01);
                 return roundValues;
             } else {
                 //ukládání rozdílů
@@ -54,7 +54,9 @@ vm.controlPercent = function (values) {
             };
         }, this);
 
-        (total > 100) ?
+        console.log(total);
+
+        (total > 1) ?
             /** Najdeme ten největší rozdíl, jelikož v nejkrajnějším případě je původní číslo _._051 a zaokrouhlené je _._1 => rozdíl 0.0049.
              *  Pak tedy odečtením 0.01 je rozdíl od původního čísla maximálně 0.0051.
              * 
