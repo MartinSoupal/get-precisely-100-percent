@@ -10,16 +10,16 @@ Script pro zajištění, aby po výpočtu a zaokrouhlení výsledků na dvě des
 Použití:
 - pro výpočet jednotlivých podílů z celku(procenta);
 
-##Documentation
+## Documentation
 
-- volá se argumentem, který je pole jednotlivých prvků
-- vrací pole s výsledky
+volá se argumentem, který je pole jednotlivých prvků
+vrací pole s výsledky
 ```js
     var array = [1, 2, 3];
     var results = this.percent(array);
 ```
 
-- pole zkontroluje vstupní hodnoty a vypočítá si sumu
+pole zkontroluje vstupní hodnoty a vypočítá si sumu
 ```js
     var total = 0;
     var results = [];
@@ -44,14 +44,14 @@ Použití:
     }
 ```
 
-- vypočítá podíl jednotlivých prvků
+vypočítá podíl jednotlivých prvků
 ```js
     values.forEach(function (value) {
         results.push(value / total);
     });
 ```
 
-- zavolá se kontrola vypočítaných podílů
+zavolá se kontrola vypočítaných podílů
 ```js
     results = this.controlPercent(results, decimals);
 ```
@@ -59,7 +59,7 @@ Použití:
     return results;
 ```
 
-- zaokrouhlí jednotlivé podíly
+zaokrouhlí jednotlivé podíly
 ```js
     var total = 0;
     var roundResults = [];
@@ -69,18 +69,18 @@ Použití:
     }, this);
 ```
 
-- suma zaokrouhlených podílů
+suma zaokrouhlených podílů
 ```js
     total = roundResults.reduce((a, b) => { return a + b; }, 0);
 ```
 
-- může nastat, že suma zaokrouhlených podílů nedá přesně 1 a proto se vyhledá nejvhodnější kandidát, u kterého se buď přičte, nebo odečte potřebné číslo.
+může nastat, že suma zaokrouhlených podílů nedá přesně 1 a proto se vyhledá nejvhodnější kandidát, u kterého se buď přičte, nebo odečte potřebné číslo.
 ```js
     if (total != 1) {
         var diff = [];
 ```
-- zjistíme si rozdíly mezi zaokrouhleními hodnotami a reálnými hodnotami
-    - pokud rozdíl bude přesně 0.005, tz. že jsme našli už nejvhodnějšího kandidáta a netřeba dále hledat.  
+zjistíme si rozdíly mezi zaokrouhleními hodnotami a reálnými hodnotami
+- pokud rozdíl bude přesně 0.005, tz. že jsme našli už nejvhodnějšího kandidáta a netřeba dále hledat.  
 ```js
         results.forEach(function (result, index) {
             if (Math.abs(roundResults[index] - result) == 0.005) {
@@ -92,8 +92,8 @@ Použití:
         }, this);
 ```
 
-- podle toho jestli byla suma větší, nebo menší než 1 najde vhodného kandidáta a přičte, nebo odečte 0.01
-- vrátí pole s upravenými hodnotami
+podle toho jestli byla suma větší, nebo menší než 1 najde vhodného kandidáta a přičte, nebo odečte 0.01
+vrátí pole s upravenými hodnotami
 ```js
         (total > 1) ?
             (roundResults[diff.indexOf(Math.max(...diff))] -= 0.01)
@@ -104,7 +104,8 @@ Použití:
 } 
 ```
 
-###Jak se najde nejvhodnější kandidát?
+### Jak se najde nejvhodnější kandidát?
+TO-DO
 
 - pomocná funkce pro zaokrouhlování
 ```js
