@@ -51,11 +51,10 @@ vypočítá podíl jednotlivých prvků
     });
 ```
 
-zavolá se kontrola vypočítaných podílů
+zavolá se kontrola vypočítaných podílů a jako hlavní funkce vrací pole výsledků
 ```js
     results = this.controlPercent(results, decimals);
-```
-```js
+
     return results;
 ```
 
