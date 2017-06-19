@@ -4,6 +4,36 @@ vm.toDecimals = function (number, decimals) {
     return 0;
 }
 
+vm.controlPercent = function (results, decimals) {
+    var total = 0;
+    var roundResults = [];
+
+    results.forEach(function (result) {
+        roundResults.push(vm.toDecimals(result, decimals));
+    }, this);
+
+    total = roundResults.reduce((a, b) => { return a + b; }, 0);
+
+    if (total != 1) {
+        var diff = [];
+
+        results.forEach(function (result, index) {
+            if (Math.abs(roundResults[index] - result) == 0.005) {
+                (total > 1) ? (roundResults[index] -= 0.01) : (roundResults[index] += 0.01);
+                return roundResults;
+            } else {
+                diff.push(roundResults[index] - result);
+            };
+        }, this);
+
+        (total > 1) ?
+            (roundResults[diff.indexOf(Math.max(...diff))] -= 0.01)
+            :
+            (roundResults[diff.indexOf(Math.min(...diff))] += 0.01);
+    }
+    return roundResults;
+}
+
 vm.percent = function (values) {
     var total = 0;
     var results = [];
@@ -33,34 +63,4 @@ vm.percent = function (values) {
 
     results = vm.controlPercent(results, decimals);
     return results;
-}
-
-vm.controlPercent = function (results, decimals) {
-    var total = 0;
-    var roundResults = [];
-
-    results.forEach(function (result) {
-        roundResults.push(vm.toDecimals(result, decimals));
-    }, this);
-
-    total = roundResults.reduce((a, b) => { return a + b; }, 0);
-
-    if (total != 1) {
-        var diff = [];
-
-        results.forEach(function (result, index) {
-            if (Math.abs(roundResults[index] - result) == 0.005) {
-                (total > 1) ? (roundResults[index] -= 0.01) : (roundResults[index] += 0.01);
-                return roundResults;
-            } else {
-                diff.push(roundResults[index] - result);
-            };
-        }, this);
-
-        (total > 1) ?
-            (roundResults[diff.indexOf(Math.max(...diff))] -= 0.01)
-            :
-            (roundResults[diff.indexOf(Math.min(...diff))] += 0.01);
-    }
-    return roundResults;
 }

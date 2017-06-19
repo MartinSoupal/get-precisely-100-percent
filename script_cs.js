@@ -4,44 +4,6 @@ vm.toDecimals = function (number, decimals) {
     return 0;
 }
 
-//values must be array of values
-//decimals >= 2
-vm.percent = function (values) {
-    var total = 0;
-    var results = [];
-    var decimals = 2;
-
-    if (!angular.isArray(values)) {
-        console.error("Argument must be array!");
-        return;
-    }
-
-    values.forEach(function (value) {
-        //hodnota není číslo, nebo je záporná
-        if ((!angular.isNumber(value)) || (value < 0)) {
-            console.error(value + " is not number or smaller then 0!");
-            return;
-        }
-
-        total += value;
-    }, this);
-
-    if (total == 0) {
-        console.error("Total of all values is 0!");
-        return;
-    }
-
-    //získání hodnot pro jednotlivé položky
-    values.forEach(function (value) {
-        results.push(value / total);
-    });
-
-    //výsledky poslány na kontrolu
-    results = vm.controlPercent(results, decimals);
-
-    return results;
-}
-
 vm.controlPercent = function (results, decimals) {
     var total = 0;
     var roundResults = [];
@@ -86,4 +48,42 @@ vm.controlPercent = function (results, decimals) {
     }
 
     return roundResults;
+}
+
+//values must be array of values
+//decimals >= 2
+vm.percent = function (values) {
+    var total = 0;
+    var results = [];
+    var decimals = 2;
+
+    if (!angular.isArray(values)) {
+        console.error("Argument must be array!");
+        return;
+    }
+
+    values.forEach(function (value) {
+        //hodnota není číslo, nebo je záporná
+        if ((!angular.isNumber(value)) || (value < 0)) {
+            console.error(value + " is not number or smaller then 0!");
+            return;
+        }
+
+        total += value;
+    }, this);
+
+    if (total == 0) {
+        console.error("Total of all values is 0!");
+        return;
+    }
+
+    //získání hodnot pro jednotlivé položky
+    values.forEach(function (value) {
+        results.push(value / total);
+    });
+
+    //výsledky poslány na kontrolu
+    results = vm.controlPercent(results, decimals);
+
+    return results;
 }
