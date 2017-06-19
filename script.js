@@ -47,7 +47,7 @@ this.percent = function (values) {
     }
 
     for (var index = 0; index < values.length; index++) {
-        if (angular.isUndefined(values[index])) {
+        if (angular.isUndefined(values[index]) || values[index] == null) {
             values[index] = 0;
         } else if ((!angular.isNumber(values[index])) || (values[index] < 0)) {
             console.error("Type Error: " + values[index] + "(type: " + typeof (values[index]) + ")" + " is not number or smaller then 0!");
