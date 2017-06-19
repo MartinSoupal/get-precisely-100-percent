@@ -1,3 +1,5 @@
+//version 0.0.1
+
 vm.toDecimals = function (number, decimals) {
     if (number)
         return Number((Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals)).toFixed(decimals));
