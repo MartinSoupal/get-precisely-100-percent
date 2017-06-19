@@ -59,22 +59,25 @@ this.percent = function (values) {
     var results = [];
     var decimals = 2;
 
-    if (!angular.isArray(values)) {
-        console.error("Argument must be array!");
-        return;
+    if (!angular.isArray(values) || values.length == 0) {
+        console.error("Type Error: argument in function 'percent' must be array of minimum length = 1!");
+        return null;
     }
 
-    values.forEach(function (value) {
-        if ((!angular.isNumber(value)) || (value < 0)) {
-            console.error(value + " is not number or smaller then 0!");
-            return;
+    for (var index = 0; index < values.length; index++) {
+        if (angular.isUndefined(values[index])) {
+            values[index] = 0;
+        } else if ((!angular.isNumber(values[index])) || (values[index] < 0)) {
+            console.error("Type Error: " + values[index] + "(type: " + typeof (values[index]) + ")" + " is not number or smaller then 0!");
+            total = 0;
+            break;
+        } else {
+            total += values[index];
         }
-        total += value;
-    }, this);
+    }
 
-    if (total == 0) {
-        console.error("Total of all values is 0!");
-        return;
+    if (!total) {
+        return Array.apply(null, Array(values.length)).map(Number.prototype.valueOf, 0);
     }
 ```
 

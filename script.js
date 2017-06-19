@@ -1,17 +1,17 @@
 //version 0.0.1
 
-vm.toDecimals = function (number, decimals) {
+this.toDecimals = function (number, decimals) {
     if (number)
         return Number((Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals)).toFixed(decimals));
     return 0;
 }
 
-vm.controlPercent = function (results, decimals) {
+this.controlPercent = function (results, decimals) {
     var total = 0;
     var roundResults = [];
 
     results.forEach(function (result) {
-        roundResults.push(vm.toDecimals(result, decimals));
+        roundResults.push(this.toDecimals(result, decimals));
     }, this);
 
     total = roundResults.reduce((a, b) => { return a + b; }, 0);
@@ -36,33 +36,37 @@ vm.controlPercent = function (results, decimals) {
     return roundResults;
 }
 
-vm.percent = function (values) {
+this.percent = function (values) {
     var total = 0;
     var results = [];
     var decimals = 2;
 
-    if (!angular.isArray(values)) {
-        console.error("Argument must be array!");
-        return;
+    if (!angular.isArray(values) || values.length == 0) {
+        console.error("Type Error: argument in function 'percent' must be array of minimum length = 1!");
+        return null;
     }
 
-    values.forEach(function (value) {
-        if ((!angular.isNumber(value)) || (value < 0)) {
-            console.error(value + " is not number or smaller then 0!");
-            return;
+    for (var index = 0; index < values.length; index++) {
+        if (angular.isUndefined(values[index])) {
+            values[index] = 0;
+        } else if ((!angular.isNumber(values[index])) || (values[index] < 0)) {
+            console.error("Type Error: " + values[index] + "(type: " + typeof (values[index]) + ")" + " is not number or smaller then 0!");
+            total = 0;
+            break;
+        } else {
+            total += values[index];
         }
-        total += value;
-    }, this);
+    }
 
-    if (total == 0) {
-        console.error("Total of all values is 0!");
-        return;
+    if (!total) {
+        return Array.apply(null, Array(values.length)).map(Number.prototype.valueOf, 0);
     }
 
     values.forEach(function (value) {
         results.push(value / total);
     });
 
-    results = vm.controlPercent(results, decimals);
+    results = this.controlPercent(results, decimals);
+
     return results;
 }
