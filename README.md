@@ -22,8 +22,8 @@ Pro jednotlivé čísla tedy dostaneme:
 | **59.2** | 59.2/100 | 0.592 | 0.59 |
 | | | **SUMA** | **0.99** |
 
-**Tady již vidíme problém, že součet zaokrouhlených hodnot není 1.00**
-Tento problém řeší právě naše funkce `controlPercent`.
+**Tady již vidíme problém, že součet zaokrouhlených hodnot není 1.00**<br>
+Tento problém řeší právě naše funkce `controlPercent`.<br>
 která si vypočítá odchylky mezi zaokrouhlenými a původními hodnotami:
 
 | původní číslo | zaokrouhlené číslo | odchylka |
@@ -32,7 +32,7 @@ která si vypočítá odchylky mezi zaokrouhlenými a původními hodnotami:
 | 0.204 | 0.20 | -0.004 |
 | 0.592 | 0.59 | -0.002 |
 
-Ví, že byla suma menší než 1.00, takže bude hledat nejmenší odchylku.
+Ví, že byla suma menší než 1.00, takže bude hledat nejmenší odchylku.<br>
 - Nejmenší, protože budeme přičítat a potřebuje číslo, u kterého dojde k co nejmenšímu zkreslení původního výsledku!
 
 | původní číslo | zaokrouhlené číslo | odchylka | upravená hodnota | odchylka od původní |
@@ -41,7 +41,7 @@ Ví, že byla suma menší než 1.00, takže bude hledat nejmenší odchylku.
 | 0.204 | 0.20 | -0.004 | 0.21 | 0.006 |
 | 0.592 | 0.59 | -0.002 | 0.60 | 0.008 |
 
-K nejmenšímu zkreslení tedy dochází u čísel 0.20 a k jedné z nich se tedy přičte požadovaná hodnota.
+K nejmenšímu zkreslení tedy dochází u čísel 0.20 a k jedné z nich se tedy přičte požadovaná hodnota.<br>
 Budeme mít tedy čísla: **0.21**, **0.2** a **0.59**, která již vs oučtu dávají **1.00**
 
 # Documentation
@@ -53,8 +53,8 @@ Hlavní funkce se volá s argumentem, který je pole jednotlivých prvků
     // results = [0.17, 0.33, 0.5];
 ```
 
-provede kontrolu vstupních dat a vypočítá si sumu(total)
-return: pole s finálními podíly
+provede kontrolu vstupních dat a vypočítá si sumu(total)<br>
+**return**: pole s finálními podíly
 ```js
 this.percent = function (values) {
     var total = 0;
@@ -96,7 +96,7 @@ podíly se pošlou do pomocné funkce, která provádí kontrolu a případnou �
 ```
 
 zaokrouhlí jednotlivé podíly
-return: zaokrouhlené a upravené podíly
+**return**: zaokrouhlené a upravené podíly
 ```js
 this.controlPercent = function (results, decimals) {
     var total = 0;
