@@ -1,7 +1,5 @@
-<p align="center">
-  <h1 align="center">Get-precisely-100-percent</h1>
-  <p align="center">Control if total of percentage will get precisely 100%.</p>
-</p>
+# Get-precisely-100-percent
+Control if total of percentage will get precisely 100%.
 
 Status: <strong>Alfa</strong><br>
 Version: <strong>0.0.1</strong>
@@ -12,7 +10,7 @@ Použití:
 
 # Princip
 
-Budeme mít čísla **20.5**, **20.5** a **59**. A chceme vypočítat jejich podíl z celkového součtu.
+Budeme mít čísla **20.5**, **20.5** a **59**. A chceme vypočítat jejich podíl z celkového součtu.<br>
 Pro jednotlivé čísla tedy dostaneme:
 
 | původní číslo | zlomek podílu | des. číslo podílu | zaokrouhlený podíl |
