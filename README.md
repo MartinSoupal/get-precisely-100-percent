@@ -40,7 +40,7 @@ Ví, že byla suma menší než 1.00, takže bude hledat nejmenší odchylku.<br
 | 0.592 | 0.59 | -0.002 | 0.60 | 0.008 |
 
 K nejmenšímu zkreslení tedy dochází u čísel 0.20 a k jedné z nich se tedy přičte požadovaná hodnota.<br>
-Budeme mít tedy čísla: **0.21**, **0.2** a **0.59**, která již vs oučtu dávají **1.00**
+Budeme mít tedy čísla: **0.21**, **0.2** a **0.59**, která již v součtu dávají **1.00**
 
 # Documentation
 
