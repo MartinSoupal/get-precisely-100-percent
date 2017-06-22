@@ -10,7 +10,7 @@ Použití:
 
 # Princip
 
-Budeme mít čísla **20.5**, **20.5** a **59**. A chceme vypočítat jejich podíl z celkového součtu.<br>
+Budeme mít čísla **20.4**, **20.4** a **59**. A chceme vypočítat jejich podíl z celkového součtu.<br>
 Pro jednotlivé čísla tedy dostaneme:
 
 | původní číslo | zlomek podílu | des. číslo podílu | zaokrouhlený podíl |
